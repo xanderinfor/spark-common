@@ -24,7 +24,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items:
-    - src:  files/vimrc
+    - src:  vimrc
       dest: /root/.vimrc
     - src: bashrc
       dest: /root/.bashrc
