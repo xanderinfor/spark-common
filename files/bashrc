@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Exports
+export TERM=xterm
+export PS1="\[$(tput bold)\]\[\033[38;5;39m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;134m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:[\[$(tput sgr0)\]\[\033[38;5;29m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\]]{\[$(tput sgr0)\]\[\033[38;5;179m\]\$?\[$(tput sgr0)\]\[\033[38;5;15m\]}>\[$(tput sgr0)\] "
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export PATH=$PATH:/opt/dev/bin:/opt/spark/bin:/opt/spark/sbin
+export SHELL=/bin/bash
+export COLUMNS=238
+export LINES=68
+
+# Source
+source $HOME/.git-completion.bash
+
+# Aliases
+alias ls='ls --color'
+alias ap='ansible-playbook'
