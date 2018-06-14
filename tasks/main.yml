@@ -1,0 +1,50 @@
+---
+- apk:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - alpine-sdk
+    - procps
+    - openjdk8
+    - autoconf
+    - ncurses
+    - automake
+    - libtool
+    - fts-dev
+    - curl-dev
+    - apr-dev
+    - cyrus-sasl-dev
+    - unzip
+    - tar
+    - gzip
+    - bzip2
+    - bash
+- copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src:  vimrc
+      dest: /root/.vimrc
+    - src: bashrc
+      dest: /root/.bashrc
+    - src: wakatime.cfg
+      dest: /root/.wakatime.cfg
+    - src: git-completion.bash
+      dest: /root/.git-completion.bash
+- file:
+    state: directory
+    dest: /opt
+- unarchive:
+    src: http://apache.claz.org/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+    copy: no
+    dest: /opt
+    creates: no
+- file:
+    state: link
+    src: /opt/spark-2.3.1-bin-hadoop2.7
+    dest: /opt/spark
+- lineinfile:
+    line: 'export PATH=$PATH:/opt/spark/bin'
+    dest: /etc/profile
+...
