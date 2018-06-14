@@ -5,6 +5,7 @@ galaxy_info:
   company: Infor
   license: Unlicense
   min_ansible_version: 2.4
+  min_ansible_version: 0.9 
   platforms:
     - name: Alpine 
       versions:

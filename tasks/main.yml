@@ -20,18 +20,6 @@
     - gzip
     - bzip2
     - bash
-- copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-  with_items:
-    - src:  vimrc
-      dest: /root/.vimrc
-    - src: bashrc
-      dest: /root/.bashrc
-    - src: wakatime.cfg
-      dest: /root/.wakatime.cfg
-    - src: git-completion.bash
-      dest: /root/.git-completion.bash
 - file:
     state: directory
     dest: /opt
