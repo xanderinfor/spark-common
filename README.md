@@ -1,7 +1,7 @@
-Spark Master
+Spark Common 
 ============
 
-Build a Spark Master docker image.
+Role for configuration common to Spark master and slaves.
 
 Requirements
 ------------
