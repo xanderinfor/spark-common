@@ -1,5 +1,6 @@
 ---
-- apk:
+- name: Install Spark dependencies.
+  apk:
     name: "{{ item }}"
     state: present
     update_cache: yes
@@ -20,17 +21,33 @@
     - gzip
     - bzip2
     - bash
-- file:
+- name: Copy the relevant rc files to /root.
+  copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+  with_items:
+    - src: vimrc
+      dest: /root/.vimrc
+    - src: bashrc
+      dest: /root/.bashrc
+    - src: wakatime.cfg
+      dest: /root/.wakatime.cfg
+    - src: git-completion.bash
+      dest: /root/.git-completion.bash
+- name: Create the /opt directory.
+  file:
     state: directory
     dest: /opt
-- unarchive:
+- name: Download and untar the spark binary. 
+  unarchive:
     src: http://apache.claz.org/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
     copy: no
     dest: /opt
     creates: no
 - name: Move Spark directory to /opt/spark 
   shell: mv -v /opt/spark-2.3.1-bin-hadoop2.7 /opt/spark
-- lineinfile:
+- name: Make sure the relevant directories are added to the path. 
+  lineinfile:
     line: 'export PATH=$PATH:/opt/spark/bin:/opt/spark/sbin'
     dest: /etc/profile
 ...
